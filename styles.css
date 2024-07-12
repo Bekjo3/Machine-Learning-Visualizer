@@ -16,6 +16,13 @@ h1 {
     margin-left: 20px;
 }
 
+p {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+
 #controls {
     display: flex;
     justify-content: space-between;
@@ -36,6 +43,7 @@ h1 {
 
 .left-controls {
     margin-right: 5px; /* Add space between left and right portions */
+    margin-left: 35px
 }
 
 .input-group {

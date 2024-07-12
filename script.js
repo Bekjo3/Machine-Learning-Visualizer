@@ -3,11 +3,11 @@ let data = [];
 let target = null;
 const svgWidth = 600;
 const svgHeight = 400;
+let previousNeighbors = [];
 
 // D3.js setup
 const dataSvg = d3.select("#dataViz");
 const knnSvg = d3.select("#knnViz");
-
 
 // Create a color scale function
 function colorScale(category) {
@@ -18,7 +18,7 @@ function colorScale(category) {
 const colorNames = {
     "#f1f13c": "Yellow",
     "#d62728": "Red",
-    "#1f77b4": "Blue", 
+    "#1f77b4": "Blue",
     "#2ca02c": "Green",
     "#9467bd": "Purple",
     "#8c564b": "Brown",
@@ -30,7 +30,6 @@ const colorNames = {
 
 document.getElementById("generateData").addEventListener("click", generateData);
 document.getElementById("runKNN").addEventListener("click", runKNN);
-
 
 function generateData() {
     const numPoints = parseInt(document.getElementById("numPoints").value);
@@ -47,15 +46,15 @@ function generateData() {
             y: y,
             category: Math.floor(Math.random() * numCategories)
         });
-
-        knnSvg.selectAll("*").remove();
-
-        updateVisualization();
     }
 
     target = { x: Math.random() * svgWidth, y: Math.random() * svgHeight };
 
     updateVisualization();
+
+    // Clear KNN visualization when data is generated
+    knnSvg.selectAll("*").remove();
+    previousNeighbors = []; // Reset previous neighbors
 }
 
 function updateVisualization() {
@@ -68,7 +67,8 @@ function updateVisualization() {
         .attr("cx", d => d.x)
         .attr("cy", d => d.y)
         .attr("r", 5)
-        .attr("fill", d => colorScale(d.category));
+        .attr("fill", d => colorScale(d.category))
+        .call(d3.drag().on("drag", dragged));  // Add drag behavior
 
     if (target) {
         dataSvg.append("circle")
@@ -150,7 +150,8 @@ function updateKnnVisualization(target, neighbors, predictedColorName, counts) {
         .attr("cx", d => d.x)
         .attr("cy", d => d.y)
         .attr("r", 5)
-        .attr("fill", d => colorScale(d.category));
+        .attr("fill", d => colorScale(d.category))
+        .call(d3.drag().on("drag", dragged));  // Add drag behavior
 
     dataSvg.append("circle")
         .attr("cx", target.x)
@@ -158,14 +159,33 @@ function updateKnnVisualization(target, neighbors, predictedColorName, counts) {
         .attr("r", 7)
         .attr("fill", "black");
 
-    neighbors.forEach(n => {
-        dataSvg.append("line")
-            .attr("x1", target.x)
-            .attr("y1", target.y)
-            .attr("x2", n.x)
-            .attr("y2", n.y)
-            .attr("stroke", "black");
+    const previousNeighborIndices = new Set(previousNeighbors.map(d => d.index));
+    const currentNeighborIndices = new Set(neighbors.map(d => d.index));
+
+    // Remove lines for points that are no longer neighbors
+    previousNeighbors.forEach(n => {
+        if (!currentNeighborIndices.has(n.index)) {
+            d3.select(`#line-${n.index}`).remove();
+        }
     });
+
+    neighbors.forEach((n, i) => {
+        if (!previousNeighborIndices.has(n.index)) {
+            dataSvg.append("line")
+                .attr("id", `line-${n.index}`)
+                .attr("x1", target.x)
+                .attr("y1", target.y)
+                .attr("x2", n.x)
+                .attr("y2", n.y)
+                .attr("stroke", "black");
+        } else {
+            d3.select(`#line-${n.index}`)
+                .attr("x2", n.x)
+                .attr("y2", n.y);
+        }
+    });
+
+    previousNeighbors = neighbors.map((n, i) => ({ ...n, index: i }));
 
     // Display counts in knnSvg
     knnSvg.append("text")
@@ -188,4 +208,13 @@ function updateKnnVisualization(target, neighbors, predictedColorName, counts) {
             .text(`${colorName}: ${count}`);
         y += 20;
     }
+}
+
+// Drag event handler
+function dragged(event, d) {
+    d.x = event.x;
+    d.y = event.y;
+    d3.select(this).attr("cx", d.x).attr("cy", d.y);
+    updateVisualization();  // Update visualization on drag
+    runKNN();  // Update K-NN visualization on drag
 }

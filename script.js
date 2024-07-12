@@ -75,7 +75,8 @@ function updateVisualization() {
             .attr("cx", target.x)
             .attr("cy", target.y)
             .attr("r", 7)
-            .attr("fill", "black");
+            .attr("fill", "black")
+            .call(d3.drag().on("drag", targetDragged)); // Add drag behavior to target
     }
 }
 
@@ -157,7 +158,8 @@ function updateKnnVisualization(target, neighbors, predictedColorName, counts) {
         .attr("cx", target.x)
         .attr("cy", target.y)
         .attr("r", 7)
-        .attr("fill", "black");
+        .attr("fill", "black")
+        .call(d3.drag().on("drag", targetDragged)); // Add drag behavior to target
 
     const previousNeighborIndices = new Set(previousNeighbors.map(d => d.index));
     const currentNeighborIndices = new Set(neighbors.map(d => d.index));
@@ -210,11 +212,22 @@ function updateKnnVisualization(target, neighbors, predictedColorName, counts) {
     }
 }
 
-// Drag event handler
+// Drag event handler for data points
 function dragged(event, d) {
-    d.x = event.x;
-    d.y = event.y;
+    // Boundary check
+    d.x = Math.max(0, Math.min(svgWidth, event.x));
+    d.y = Math.max(0, Math.min(svgHeight, event.y));
     d3.select(this).attr("cx", d.x).attr("cy", d.y);
+    updateVisualization();  // Update visualization on drag
+    runKNN();  // Update K-NN visualization on drag
+}
+
+// Drag event handler for target point
+function targetDragged(event) {
+    // Boundary check
+    target.x = Math.max(0, Math.min(svgWidth, event.x));
+    target.y = Math.max(0, Math.min(svgHeight, event.y));
+    d3.select(this).attr("cx", target.x).attr("cy", target.y);
     updateVisualization();  // Update visualization on drag
     runKNN();  // Update K-NN visualization on drag
 }

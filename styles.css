@@ -3,15 +3,6 @@ body {
     background-color: rgb(238, 238, 238);
 }
 
-#dataViz {
-    background-color: #e0f7fa; /* Light cyan for the left box */
-}
-
-#knnViz {
-    background-color: #adadac; /* Light yellow for the right box */
-    width: 500px; /* Ensuring the width is set to 500px */
-}
-
 h1 {
     margin-left: 20px;
 }
@@ -22,54 +13,40 @@ p {
     margin-bottom: 20px;
 }
 
-
 #controls {
     display: flex;
     justify-content: space-between;
-    /* align-items: flex-start; */
     margin-left: 20px;
     margin-right: 20px;
 }
 
-.input-group-container button, .input-group-container input, .input-group-container select {
-    line-height: 1;
-}
-
 .left-controls, .right-controls {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.left-controls {
-    margin-right: 5px; /* Add space between left and right portions */
-    margin-left: 35px
+    width: 45%;
 }
 
 .input-group {
-    margin-right: 10px;
     margin-bottom: 10px;
 }
 
-#controls label {
-    margin-right: 5px;
+button {
+    margin-top: 10px;
+    display: block;
 }
 
 #visualization {
     display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
-svg {
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+    justify-content: space-between;
+    margin: 20px;
     overflow: auto;
 }
 
-button {
-    margin-top: 0px;
-    margin-right: 10px;
-    margin-left: 40px;
-    align-self: flex-start;
+#dataViz, #knnViz {
+    background-color: lightblue;
+    margin-right: 20px;
+    border: 1px solid #ccc;
+}
+
+iframe {
+    margin: 20px;
+    border: 1px solid #ccc;
 }

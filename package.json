@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "ml-kernel": "^3.0.0",
+    "ml-stat": "^1.3.3"
+  }
+}

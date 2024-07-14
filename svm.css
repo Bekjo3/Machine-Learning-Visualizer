@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(238, 238, 238);
+    margin: 0;
+    overflow: hidden;
+}
+
+#dataViz {
+    background-color: #e0f7fa;
+}
+
+h1 {
+    margin-left: 20px;
+}
+
+#controls {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.input-group {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#visualization {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+svg {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    overflow: auto;
+}
+
+button {
+    margin-top: 0px;
+    margin-right: 10px;
+    margin-left: 40px;
+    align-self: flex-start;
+}

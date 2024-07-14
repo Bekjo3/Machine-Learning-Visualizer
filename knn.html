@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-NN Visualizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>K-NN Visualizer</h1>
+    <!-- <p id="description">This visualizer allows you to generate random data points and run the K-Nearest Neighbors (K-NN) algorithm to classify a target point. You can move points around to see how the nearest neighbors change in real-time.</p> -->
+    <div id="controls">
+        <div class="left-controls">
+            <div class="input-group">
+                <label for="numPoints">Number of points:</label>
+                <input type="number" id="numPoints" value="50">
+            </div>
+            <div class="input-group">
+                <label for="numCategories">Number of categories:</label>
+                <input type="number" id="numCategories" value="3">
+            </div>
+            <div class="input-group">
+                <label for="clusterPercent">Cluster %:</label>
+                <input type="number" id="clusterPercent" value="50">
+            </div>
+            <button id="generateData">Generate Data</button>
+        </div>
+        <div class="right-controls">
+            <div class="input-group">
+                <label for="numNeighbors">Number of Nearest Neighbors (k):</label>
+                <input type="number" id="numNeighbors" value="10">
+            </div>
+            <div class="input-group">
+                <label for="weighting">Weighting:</label>
+                <select id="weighting">
+                    <option value="none">None</option>
+                    <option value="inverseSquared">Inverse Squared</option>
+                    <option value="gaussian">Gaussian</option>
+                </select>
+            </div>
+            <button id="runKNN">Run KNN</button>
+        </div>
+    </div>
+    <div id="visualization">
+        <svg id="dataViz" width="600" height="400"></svg>
+        <svg id="knnViz" width="600" height="400"></svg>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

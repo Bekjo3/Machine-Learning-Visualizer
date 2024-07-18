@@ -13,3 +13,17 @@ function updateVisualizer() {
         description.innerText = "This visualizer allows you to generate random data points and run the Support Vector Machine (SVM) algorithm to classify a target point. You can move points around to see how the separating hyperplane changes in real-time.";
     }
 }
+
+document.getElementById("toggleDescription").addEventListener("click", function() {
+    const content = document.getElementById("descriptionContent");
+    if (content.style.display === "block") {
+        content.style.display = "none";
+    } else {
+        content.style.display = "block";
+    }
+});
+
+document.getElementById("learnAboutProject").addEventListener("click", function() {
+    const content = document.getElementById("descriptionContent");
+    content.style.display = content.style.display === "block" ? "none" : "block";
+});

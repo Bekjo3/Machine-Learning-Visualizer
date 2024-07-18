@@ -10,8 +10,56 @@
     <div id="container">
         <h1>ML Visualizer</h1>
         <p id="description">This visualizer allows you to generate random data points and run machine learning algorithms to classify a target point. You can move points around to see how the classifications change in real-time.</p>
+        <button id="toggleDescription" class="dropbtn">Learn about project</button>
+        <div id="descriptionContent" class="dropdown-content">
+            <div class="about-section">
+                <h2>About</h2>
+                <p>This project offers an interactive platform to explore two fundamental machine learning algorithms: K-Nearest Neighbors (KNN) and Support Vector Machines (SVM). These algorithms are crucial in supervised learning, where the goal is to classify data points based on labeled training data.</p>
+
+                <h3>K-Nearest Neighbors (KNN)</h3>
+                <p>KNN is a non-parametric algorithm used for classification and regression tasks. It works by finding the 'K' nearest data points in the training set and determining the majority class among them to classify a new data point. This method is particularly intuitive and effective for small datasets.</p>
+                <p><strong>Example:</strong> Consider a scenario where you want to classify a fruit as either an apple or an orange. By looking at the closest fruits in terms of features like color and size, KNN can determine the fruit's category.</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/KnnClassification.svg" alt="KNN Example" width="300">
+                <p><small>Figure 1: Example of KNN classification. The red dot's classification is determined by the majority of its nearest neighbors.</small></p>
+
+                <h3>Support Vector Machines (SVM)</h3>
+                <p>SVM is a powerful classification algorithm that finds the hyperplane which best separates different classes in the dataset. The algorithm aims to maximize the margin between the classes, thus providing a robust decision boundary. SVM can handle linear and non-linear classification tasks by using kernel functions to transform data into higher dimensions.</p>
+                <p><strong>Example:</strong> For classifying emails as spam or not spam, SVM can be used to draw an optimal boundary based on the features of the emails, like word frequency and presence of certain phrases.</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Svm_max_sep_hyperplane_with_margin.svg/900px-Svm_max_sep_hyperplane_with_margin.svg.png?20080311124808" alt="SVM Example" width="300">
+                <p><small>Figure 2: Example of SVM classification. The solid line represents the optimal hyperplane, and the dashed lines represent the margins.</small></p>
+
+                <h3>How to Use the Visualizer</h3>
+                <p>Follow these steps to explore the algorithms:</p>
+                <ul>
+                    <li>Generate data points by clicking 'Generate Data'. Adjust the number of points, categories, and cluster percentage as needed.</li>
+                    <li>Select the model you want to visualize: KNN or SVM.</li>
+                    <li>For KNN, specify the number of nearest neighbors (K) and weighting method.</li>
+                    <li>For SVM, simply click 'Run SVM' to see the optimal hyperplane.</li>
+                    <li>Drag data points around the canvas to see how the classification and decision boundaries change in real-time.</li>
+                </ul>
+
+                <h3>Additional Learning Resources</h3>
+                <p>Expand your understanding of these algorithms with the following resources:</p>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=HVXime0nQeI" target="_blank">Machine Learning Fundamentals - YouTube</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">KNN Algorithm - Wikipedia</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Support-vector_machine" target="_blank">SVM - Wikipedia</a></li>
+                    <li><a href="https://www.coursera.org/lecture/machine-learning/svm-HNzWb" target="_blank">SVM Course - Coursera</a></li>
+                    <li><a href="https://scikit-learn.org/stable/modules/svm.html" target="_blank">Scikit-learn: SVM</a></li>
+                </ul>
+
+                <h3>Interactive Learning</h3>
+                <p>To further enhance your learning experience, try these interactive platforms:</p>
+                <ul>
+                    <li><a href="https://www.kaggle.com/learn/intro-to-machine-learning" target="_blank">Kaggle: Intro to Machine Learning</a></li>
+                    <li><a href="https://www.edx.org/course/machine-learning-with-python-from-linear-models-to" target="_blank">edX: Machine Learning with Python</a></li>
+                    <li><a href="https://www.codecademy.com/learn/machine-learning" target="_blank">Codecademy: Machine Learning</a></li>
+                </ul>
+            </div>
+        </div>
         <div id="controls">
-            <div>
+            <label>Select Model:</label>
+            <div class="radio-buttons">
                 <label><input type="radio" name="algorithm" value="knn" id="knnRadio" checked> KNN</label>
                 <label><input type="radio" name="algorithm" value="svm" id="svmRadio"> SVM</label>
             </div>

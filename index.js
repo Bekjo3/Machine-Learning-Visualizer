@@ -1,5 +1,6 @@
 document.getElementById("knnRadio").addEventListener("change", updateVisualizer);
 document.getElementById("svmRadio").addEventListener("change", updateVisualizer);
+document.getElementById("lrRadio").addEventListener("change", updateVisualizer);
 
 function updateVisualizer() {
     const visualizer = document.getElementById("visualizer");
@@ -11,6 +12,9 @@ function updateVisualizer() {
     } else if (document.getElementById("svmRadio").checked) {
         visualizer.src = "svm.html";
         description.innerText = "This visualizer allows you to generate random data points and run the Support Vector Machine (SVM) algorithm to classify a target point. You can move points around to see how the separating hyperplane changes in real-time.";
+    } else if (document.getElementById("lrRadio").checked) {
+        visualizer.src = "lr.html";
+        description.innerText = "This visualizer allows you to generate random data points and run the Linear Regression (LR) algorithm to predict the target variable. You can move points around to see how the best-fit line changes in real-time.";
     }
 }
 

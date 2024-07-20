@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Regression Visualizer</title>
+    <link rel="stylesheet" href="lr.css">
+</head>
+<body>
+    <h1>Linear Regression Visualizer</h1>
+    <div id="controls">
+        <div class="control-group">
+            <div class="input-group">
+                <label for="numPoints">Number of points:</label>
+                <input type="number" id="numPoints" value="20" max="30">
+            </div>
+            <button id="generateData">Generate Data</button>
+        </div>
+        <div class="control-group">
+            <div class="input-group">
+                <label for="view">View:</label>
+                <label><input type="radio" name="view" value="none"> None</label>
+                <label><input type="radio" name="view" value="absolute" checked> Absolute Error</label>
+                
+            </div>
+            <button id="runLR">Run Linear Regression</button>
+        </div>
+    </div>
+    <div id="visualization">
+        <svg id="dataViz" width="600" height="400"></svg>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="lr.js"></script>
+</body>
+</html>
